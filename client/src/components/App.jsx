@@ -9,20 +9,19 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    this.getData();
+    this.getCaliforniaParks();
   }
-  getData() {
+  getCaliforniaParks() {
     Axios({
       method: 'get',
-      url: 'https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=5tzMjp0vTJgSS7TSY2M2oRu2Par3WdpqYcNQEKt4',
+      url: 'https://developer.nps.gov/api/v1/parks?stateCode=CA&api_key=5tzMjp0vTJgSS7TSY2M2oRu2Par3WdpqYcNQEKt4',
     })
       .then(res => {
-        console.log(res)
+        console.log('data', res.data)
         this.setState({
           parkData: res.data,
         })
       })
-      console.log(this.state.parkData)
   }
   render() {
     return (
