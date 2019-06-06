@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import California from './children/California.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello World
+        <California />
       </div>
     )
   }
