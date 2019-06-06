@@ -12,7 +12,6 @@ class App extends React.Component {
   }
   componentWillMount() {
     this.getCaliforniaParks();
-    console.log('data', this.state.parkData)
   }
   getCaliforniaParks() {
     Axios({
@@ -25,10 +24,9 @@ class App extends React.Component {
           dataReceived: true,
         })
       })
-      console.log('data', this.state.parkData)
+
   }
   render() {
-    console.log('data1', this.state.parkData)
     return (
       <div>
         <California
