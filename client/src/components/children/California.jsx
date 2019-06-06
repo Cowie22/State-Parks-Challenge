@@ -10,6 +10,7 @@ class California extends React.Component {
   }
   render() {
     return (
+      this.props.dataReceived ?
       <div className="CaliMap">
         <GoogleMaps
           apiKey={"AIzaSyBSBuWAjIYxYIqLRmVYltprhS0_mwUO7k8"}
@@ -18,6 +19,10 @@ class California extends React.Component {
           center={{lat: 36.7783, lng: -119.4179}}
           markers={{lat: 37.4224764, lng: -122.0842499}} //optional
         />
+      </div>
+      :
+      <div>
+        Loading data...
       </div>
     )
   }

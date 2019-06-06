@@ -7,10 +7,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       parkData: [],
+      dataReceived: false,
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.getCaliforniaParks();
+    console.log('data', this.state.parkData)
   }
   getCaliforniaParks() {
     Axios({
@@ -18,16 +20,21 @@ class App extends React.Component {
       url: 'https://developer.nps.gov/api/v1/parks?stateCode=CA&api_key=5tzMjp0vTJgSS7TSY2M2oRu2Par3WdpqYcNQEKt4',
     })
       .then(res => {
-        console.log('data', res.data)
         this.setState({
-          parkData: res.data,
+          parkData: res.data.data,
+          dataReceived: true,
         })
       })
+      console.log('data', this.state.parkData)
   }
   render() {
+    console.log('data1', this.state.parkData)
     return (
       <div>
-        <California />
+        <California
+          parkData={this.state.parkData}
+          dataReceived={this.state.dataReceived}
+        />
       </div>
     )
   }
