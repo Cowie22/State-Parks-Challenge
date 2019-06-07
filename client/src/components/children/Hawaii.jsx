@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleMaps from "simple-react-google-maps";
 
-class California extends React.Component {
+class Hawaii extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,11 +31,11 @@ class California extends React.Component {
       this.props.dataReceived ?
       <div className="CaliMap">
         <GoogleMaps
-          // Map centered and points filtered to only include california national parks
+          // Map centered and points filtered to only include Hawaiian national parks
           apiKey={"AIzaSyBSBuWAjIYxYIqLRmVYltprhS0_mwUO7k8"}
           style={{height: "800px", width: "400"}}
-          zoom={6.2}
-          center={{lat: 36.7783, lng: -119.4179}}
+          zoom={7.4}
+          center={{lat: 19.9968, lng: -157.5828}}
           // Takes in the latLongFiltered array from above and plots their points on the map
           markers={latLongFiltered}
         />
@@ -48,4 +48,4 @@ class California extends React.Component {
   }
 }
 
-export default California
+export default Hawaii
