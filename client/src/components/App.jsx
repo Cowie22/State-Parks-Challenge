@@ -7,45 +7,26 @@ class App extends React.Component {
     super(props);
     this.state = {
       parkData: [],
-      dataReceived: false,
-      Name: '',
-      Location: '',
-      Contact: '',
-      OperatingHours: '',
-      Fee: '',
     };
-    this.handleParkInfo = this.handleParkInfo.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
     this.getHawaiiParks();
   }
   getHawaiiParks() {
-    Axios({
-      method: 'get',
-      url: 'https://developer.nps.gov/api/v1/parks?stateCode=CA&api_key=5tzMjp0vTJgSS7TSY2M2oRu2Par3WdpqYcNQEKt4',
-    })
-      .then(res => {
+    Axios.get('/parks')
+    .then(res => {
+      console.log('data', res.data)
         this.setState({
-          parkData: res.data.data,
-          dataReceived: true,
-        })
-      })
-  }
-  handleParkInfo(event) {
-    this.setState({
-      Name: event.target.name,
-      Location: event.target.location,
-      Contact: event.target.contact,
-      OperatingHours: event.target.hours,
-      Fee: event.target.fee,
-    })
-  }
-  render() {
-    return (
+          parkData: res.data,
+        });
+      });
+    }
+    render() {
+      console.log('parks', this.state.parkData)
+      return (
       <div>
         <Hawaii
           parkData={this.state.parkData}
-          dataReceived={this.state.dataReceived}
         />
       </div>
     )

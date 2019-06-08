@@ -9,26 +9,16 @@ class Hawaii extends React.Component {
     }
   }
   render() {
-    // The following is utilized to filter the longitudes and latitudes from the national parks api
-    // So that they match the array of objects needed for the google maps import.
-
-    // Filters longs and lats into a tuple of [lat, long]
-    let longLat = this.props.parkData.map(parks => parks.latLong.split(','));
-    let latLongFiltered = [];
-    for (let i = 0; i < longLat.length; i++) {
-      // Slice off the leading 'lat:' or 'long:' because this is the part of the data that needs
-      // To be fixed in order to match the google map import
-      let latNums = longLat[i][0] ? longLat[i][0].slice(4) : null;
-      let longNums = longLat[i][1] ? longLat[i][1].slice(6) : null;
-      // Push the newly made object, with the corrected 'lat:' or 'lng:' and change
-      // The values from strings to numbers
-      latLongFiltered.push({lat: +latNums, lng: +longNums});
-    }
+    // Filters parks data for longitude and latitude in order to
+    // Display state park markers on the map
+    let parksArr = [];
+    this.props.parkData.map(park => {
+      parksArr.push({
+        lat: park.latitude,
+        lng: park.longitude
+      })
+    });
     return (
-      // Conditional render because the api data takes some time to receive
-      // I don't want the image to show until the data is received so the user
-      // Is not confused when the map does not have markers or interactivity
-      this.props.dataReceived ?
       <div className="CaliMap">
         <GoogleMaps
           // Map centered and points filtered to only include Hawaiian national parks
@@ -36,13 +26,9 @@ class Hawaii extends React.Component {
           style={{height: "800px", width: "400"}}
           zoom={7.4}
           center={{lat: 19.9968, lng: -157.5828}}
-          // Takes in the latLongFiltered array from above and plots their points on the map
-          markers={latLongFiltered}
+          // Takes in the parksArr array from above and plots their points on the map
+          markers={parksArr}
         />
-      </div>
-      :
-      <div>
-        Loading data...
       </div>
     )
   }
