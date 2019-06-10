@@ -11,8 +11,8 @@ USE state_parks;
 CREATE TABLE parks (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(50) NOT NULL,
-  longitude integer NOT NULL,
-  latitude integer NOT NULL,
+  longitude DECIMAL(9,6),
+  latitude DECIMAL(8,6),
   location varchar(200) NOT NULL,
   price varchar(200) NOT NULL,
   activities varchar(200) NOT NULL,

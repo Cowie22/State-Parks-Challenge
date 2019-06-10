@@ -28,6 +28,7 @@ class Hawaii extends React.Component {
           center={{lat: 19.9968, lng: -157.5828}}
           // Takes in the parksArr array from above and plots their points on the map
           markers={parksArr}
+          onClick={() => console.log('Hello')}
         />
       </div>
     )
