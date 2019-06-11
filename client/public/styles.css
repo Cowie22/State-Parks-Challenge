@@ -9,9 +9,33 @@ body {
 .ParkInfo {
   position: absolute;
   left: 2%;
-  top: 70%;
+  top: 68%;
   background: black;
   color: white;
   width: fit-content;
   height: fit-content;
+}
+
+#Info-Title {
+  color: #FFB300;
+  font-weight: bold;
+}
+
+.park-info-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: -24px;
+  margin-bottom: -24px;
+}
+
+h4 {
+  margin-right: 10px;
+  margin-left: 4px;
+  font-weight: bold;
+  color: #2667FF;
+}
+
+h5 {
+  font-size: 14px;
+  margin-right: 10px;
 }

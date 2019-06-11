@@ -7,11 +7,27 @@ const ParkInfo = (props) => {
       // And disappears when the map itself is clicked
       clicked ?
       <div className="ParkInfo">
-        <p>Name: {' '} {currentPark[0].name} </p>
-        <p>Location: {' '} {currentPark[0].location}</p>
-        <p>Activities: {' '} {currentPark[0].activities}</p>
-        <p>Operating Hours: {' '} {currentPark[0].hours}</p>
-        <p>Fee: {' '} {currentPark[0].price}</p>
+        <h2 id="Info-Title">Park Information</h2>
+        <div className="park-info-container">
+          <h4>Name: </h4>
+          <h5>{currentPark[0].name}</h5>
+        </div>
+        <div className="park-info-container">
+          <h4>Location: </h4>
+          <h5>{currentPark[0].location}</h5>
+        </div>
+        <div className="park-info-container">
+          <h4>Activities: </h4>
+          <h5>{currentPark[0].activities}</h5>
+        </div>
+        <div className="park-info-container">
+          <h4>Operating Hours: </h4>
+          <h5>{currentPark[0].hours}</h5>
+        </div>
+        <div className="park-info-container">
+          <h4>Fee: </h4>
+          <h5>{currentPark[0].price}</h5>
+        </div>
       </div>
       :
       <div>
