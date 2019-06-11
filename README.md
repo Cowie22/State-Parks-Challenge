@@ -20,7 +20,7 @@ The filtered parks will be the only remaining markers on the page.
 Node 10.15.0
 Nodemon
 Webpack
-MySQL 5.7
+MySQL
 
 ### Usage
 
