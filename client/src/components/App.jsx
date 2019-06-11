@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import Hawaii from './children/Hawaii.jsx';
+import ParkInfo from './children/ParkInfo.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,8 +9,10 @@ class App extends React.Component {
     this.state = {
       parkData: [],
       currentPark: [],
+      clicked: false,
     };
-    this.getOnePark = this.getOnePark.bind(this)
+    this.getOnePark = this.getOnePark.bind(this);
+    this.handleOffClick = this.handleOffClick.bind(this);
   }
   componentDidMount() {
     this.getHawaiiParks();
@@ -27,8 +30,15 @@ class App extends React.Component {
       .then(res => {
         this.setState({
           currentPark: res.data,
+          clicked: true,
         }, () => console.log('one park', this.state.currentPark))
       });
+    }
+    // Function to make the info div disappear on map click
+    handleOffClick() {
+      this.setState({
+        clicked: false,
+      })
     }
     render() {
       console.log('parks', this.state.parkData)
@@ -37,6 +47,11 @@ class App extends React.Component {
         <Hawaii
           parkData={this.state.parkData}
           getOnePark={this.getOnePark}
+          handleOffClick={this.handleOffClick}
+        />
+        <ParkInfo
+          clicked={this.state.clicked}
+          currentPark={this.state.currentPark}
         />
       </div>
     )

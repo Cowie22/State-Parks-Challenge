@@ -1,5 +1,17 @@
+
 body {
   background-color: black;
   color: white;
 }
 
+/* Park Info Styles */
+
+.ParkInfo {
+  position: absolute;
+  left: 10%;
+  top: 70%;
+  background: black;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+}
