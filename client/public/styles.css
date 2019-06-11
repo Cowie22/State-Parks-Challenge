@@ -39,3 +39,41 @@ h5 {
   font-size: 14px;
   margin-right: 10px;
 }
+
+
+/* Park Search Style */
+
+.search-form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+h2 {
+  color: #FFB300;
+  font-weight: bold;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  color: #2667FF;
+  font-weight: bold;
+}
+
+.btn {
+  background: white;
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  height: fit-content;
+  width: fit-content;
+  border: 2px solid white;
+  margin-top: 18px;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
+}
