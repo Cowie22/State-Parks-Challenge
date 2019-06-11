@@ -35,11 +35,15 @@ class Search extends React.Component {
     return(
       <div className="search-form">
         <h2>Search Parks</h2>
-        <label>Park Name: </label>
-        <input type="text" id="search" value={this.state.search} onChange={this.handleChange}></input>
-        <label>Activities: </label>
-        <input type="text" id="activities" value={this.state.activities} onChange={this.handleActivitiesChange}></input>
-        <button onClick={() => this.handleBaseState()}>RESET SEARCH</button>
+        <div className="input-container">
+          <label>Park Name: </label>
+          <input type="text" id="search" value={this.state.search} onChange={this.handleChange}></input>
+        </div>
+        <div className="input-container">
+          <label>Activities: </label>
+          <input type="text" id="activities" value={this.state.activities} onChange={this.handleActivitiesChange}></input>
+        </div>
+        <button onClick={() => this.handleBaseState()} className="btn">RESET SEARCH</button>
       </div>
     )
   }
