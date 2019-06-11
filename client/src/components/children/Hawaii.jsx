@@ -1,5 +1,5 @@
 import React from 'react';
-import GoogleMaps from "simple-react-google-maps";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class Hawaii extends React.Component {
   constructor(props) {
@@ -7,32 +7,51 @@ class Hawaii extends React.Component {
     this.state = {
 
     }
+    this.renderMarkers = this.renderMarkers.bind(this);
+  }
+  // Function that maps the incoming parks data so that each 'Marker' can be rendered to the page
+  renderMarkers() {
+    return this.props.parkData.map((park, i) => {
+      return (
+        <Marker
+          key={i}
+          onClick={() => console.log('hello')}
+          title={park.name}
+          position={{lat: park.latitude, lng: park.longitude}}
+          name={park.name}
+        />
+      )
+    })
   }
   render() {
-    // Filters parks data for longitude and latitude in order to
-    // Display state park markers on the map
-    let parksArr = [];
-    this.props.parkData.map(park => {
-      parksArr.push({
-        lat: park.latitude,
-        lng: park.longitude
-      })
-    });
     return (
-      <div className="CaliMap">
-        <GoogleMaps
+      <div className="HawaiiMap">
+        <Map google={this.props.google}
           // Map centered and points filtered to only include Hawaiian national parks
-          apiKey={"AIzaSyBSBuWAjIYxYIqLRmVYltprhS0_mwUO7k8"}
-          style={{height: "800px", width: "400"}}
+          initialCenter={{
+            lat: 19.9968,
+            lng: -157.5828
+          }}
+          style = {{
+            width: '100%',
+            height: '100%'
+          }}
           zoom={7.4}
-          center={{lat: 19.9968, lng: -157.5828}}
-          // Takes in the parksArr array from above and plots their points on the map
-          markers={parksArr}
-          onClick={() => console.log('Hello')}
-        />
+          onClick={this.onMapClicked}
+        >
+        {/* renders markers to the page */}
+        {this.renderMarkers()}
+        <InfoWindow onClose={this.onInfoWindowClose}>
+          <div>
+            {/* <h1>{this.state.selectedPlace.name}</h1> */}
+          </div>
+        </InfoWindow>
+        </Map>
       </div>
     )
   }
 }
 
-export default Hawaii
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyBSBuWAjIYxYIqLRmVYltprhS0_mwUO7k8")
+})(Hawaii)
