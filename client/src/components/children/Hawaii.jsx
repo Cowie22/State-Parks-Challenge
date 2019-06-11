@@ -15,7 +15,10 @@ class Hawaii extends React.Component {
       return (
         <Marker
           key={i}
-          onClick={() => console.log('hello')}
+          // On click will go to the data base and get the information for that particular park
+          // Accomplished by using the park's id in the database
+          // This will then be used in Info.jsx to display the pertinent information
+          onClick={() => this.props.getOnePark(park.id)}
           title={park.name}
           position={{lat: park.latitude, lng: park.longitude}}
           name={park.name}

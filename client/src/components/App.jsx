@@ -7,7 +7,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       parkData: [],
+      currentPark: [],
     };
+    this.getOnePark = this.getOnePark.bind(this)
   }
   componentDidMount() {
     this.getHawaiiParks();
@@ -15,10 +17,17 @@ class App extends React.Component {
   getHawaiiParks() {
     Axios.get('/parks')
     .then(res => {
-      console.log('data', res.data)
         this.setState({
           parkData: res.data,
         });
+      });
+    }
+    getOnePark(id) {
+      Axios.get(`/parks/${id}`)
+      .then(res => {
+        this.setState({
+          currentPark: res.data,
+        }, () => console.log('one park', this.state.currentPark))
       });
     }
     render() {
@@ -27,6 +36,7 @@ class App extends React.Component {
       <div>
         <Hawaii
           parkData={this.state.parkData}
+          getOnePark={this.getOnePark}
         />
       </div>
     )
