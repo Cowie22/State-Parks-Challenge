@@ -15,12 +15,14 @@ class Search extends React.Component {
   handleChange(event) {
     this.setState({
       search: event.target.value,
+      activities: '',
     })
     this.props.onChange(event.target.value);
   }
   // Handles change in the search form for activities
   handleActivitiesChange(event) {
     this.setState({
+      search: '',
       activities: event.target.value,
     })
     this.props.filterActivities(event.target.value);
@@ -28,8 +30,8 @@ class Search extends React.Component {
   // Handles reset for the search
   handleBaseState() {
     this.setState(this.baseState);
-    this.props.filterActivities(this.baseState.activities);
     this.props.onChange(this.baseState.search);
+    this.props.filterActivities(this.baseState.activities);
   }
   render() {
     return(
