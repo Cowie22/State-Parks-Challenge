@@ -28,7 +28,7 @@ MySQL
 1. Fork and clone the repository
 2. In the terminal and within the project directory run 'npm install'
 3. Follow the directions in config.example.js, in order to set-up your database config file.
-4. If you have a MySQL password run 'mysql -u root -p < schema.sql' and enter your password
+4. If you have a MySQL password, in the terminal, run 'mysql -u root -p < schema.sql' and enter your password
 otherwise run 'mysql -u root < schema.sql'
 5. In a separate terminal run 'npm run react-dev'
 6. In a separate terminal run 'npm start'
