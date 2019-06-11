@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class Hawaii extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Hawaii extends React.Component {
   }
   // Function that maps the incoming parks data so that each 'Marker' can be rendered to the page
   renderMarkers() {
-    return this.props.parkData.map((park, i) => {
+    return this.props.filter.map((park, i) => {
       return (
         <Marker
           key={i}

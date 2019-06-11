@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import Search from './children/Search.jsx';
 import Hawaii from './children/Hawaii.jsx';
 import ParkInfo from './children/ParkInfo.jsx';
 
@@ -9,10 +10,12 @@ class App extends React.Component {
     this.state = {
       parkData: [],
       currentPark: [],
+      filter: [],
       clicked: false,
     };
     this.getOnePark = this.getOnePark.bind(this);
     this.handleOffClick = this.handleOffClick.bind(this);
+    this.filterParks = this.filterParks.bind(this);
   }
   componentDidMount() {
     this.getHawaiiParks();
@@ -22,6 +25,7 @@ class App extends React.Component {
     .then(res => {
         this.setState({
           parkData: res.data,
+          filter: res.data,
         });
       });
     }
@@ -40,14 +44,31 @@ class App extends React.Component {
         clicked: false,
       })
     }
+    // Function to filter the data and return markers that match the name in the search bar
+    filterParks(parkFilter) {
+      let filteredParks = this.state.parkData;
+      filteredParks = filteredParks.filter((park) => {
+        let parkName = park.name.toLowerCase();
+        return parkName.indexOf(
+          parkFilter.toLowerCase()) !== -1
+      })
+      this.setState({
+        filter: filteredParks,
+      })
+    }
     render() {
       console.log('parks', this.state.parkData)
       return (
       <div>
+        <Search
+          filter={this.state.filter}
+          onChange={this.filterParks}
+        />
         <Hawaii
           parkData={this.state.parkData}
           getOnePark={this.getOnePark}
           handleOffClick={this.handleOffClick}
+          filter={this.state.filter}
         />
         <ParkInfo
           clicked={this.state.clicked}
