@@ -1,16 +1,8 @@
 import React from 'React';
 
-class ParkInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-  render() {
-    // Simple destructure so that you don't have to write this.props
-    const { clicked, currentPark } = this.props;
-    return (
+const ParkInfo = (props) => {
+  const { clicked, currentPark } = props;
+  return (
       // Conditional render so that park info is only displayed when a 'Marker' is clicked
       // And disappears when the map itself is clicked
       clicked ?
@@ -25,8 +17,8 @@ class ParkInfo extends React.Component {
       <div>
 
       </div>
-    )
-  }
+  )
 }
+
 
 export default ParkInfo
