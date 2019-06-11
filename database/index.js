@@ -14,7 +14,19 @@ const getParks = (callback) => {
   });
 };
 
+const getOnePark = (id, callback) => {
+  const queryStr = `SELECT * FROM parks WHERE id = ${id}`;
+  connection.query(queryStr, (err, run) => {
+    if (err) {
+      callback(err);
+      return;
+    }
+    callback(null, run);
+  });
+};
+
 
 module.exports = {
   getParks,
+  getOnePark,
 }
