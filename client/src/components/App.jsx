@@ -16,10 +16,12 @@ class App extends React.Component {
     this.getOnePark = this.getOnePark.bind(this);
     this.handleOffClick = this.handleOffClick.bind(this);
     this.filterParks = this.filterParks.bind(this);
+    this.filterActivities = this.filterActivities.bind(this);
   }
   componentDidMount() {
     this.getHawaiiParks();
   }
+  // Function that gets all park data from the database
   getHawaiiParks() {
     Axios.get('/parks')
     .then(res => {
@@ -29,6 +31,7 @@ class App extends React.Component {
         });
       });
     }
+    // Function that gets data for one park from the database, callback used to make sure the props are not one click behind
     getOnePark(id) {
       Axios.get(`/parks/${id}`)
       .then(res => {
@@ -56,13 +59,25 @@ class App extends React.Component {
         filter: filteredParks,
       })
     }
+    // Function to filter the data and return markers that match the activities in the search bar
+    filterActivities(activityFilter) {
+      let filteredActivities = this.state.parkData;
+      filteredActivities = filteredActivities.filter((activity) => {
+        let parkActivites = activity.activities.toLowerCase();
+        return parkActivites.indexOf(
+          activityFilter.toLowerCase()) !== -1
+      })
+      this.setState({
+        filter: filteredActivities,
+      })
+    }
     render() {
-      console.log('parks', this.state.parkData)
       return (
       <div>
         <Search
           filter={this.state.filter}
           onChange={this.filterParks}
+          filterActivities={this.filterActivities}
         />
         <Hawaii
           parkData={this.state.parkData}
